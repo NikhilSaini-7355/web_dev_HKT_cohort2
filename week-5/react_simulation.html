@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <body>
+         <div id="buttonposition"></div>
+    </body>
+    <script>
+
+        // by developer
+      let state={
+        count:0
+      }
+
+      // by developer
+      function onButtonPress()
+      {
+          state.count++;
+          // buttonComponentReRender() by react
+          buttonComponentReRender()
+      }
+
+
+// This buttonComponentReRender() is done by react
+      function buttonComponentReRender()
+      {
+         document.getElementById("buttonposition").innerHTML = "";
+         let child = buttonComponent(state.count);
+         document.getElementById("buttonposition").appendChild(child);
+      }
+
+
+      // by developer
+      function buttonComponent(count)
+      {
+        let button = document.createElement("button");
+        button.innerHTML = `count is ${count}`
+        button.setAttribute("onclick","onButtonPress()")
+        return button;
+      }
+
+      // buttonComponentReRender() by react
+      buttonComponentReRender();
+    </script>
+</html>

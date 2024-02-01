@@ -1,0 +1,33 @@
+<!--  todo app making starts  from class 4.2-->
+<!--  todo_app version1 -->
+<!DOCTYPE html>
+<html>
+    <script>
+        let id=0;
+      function AddTodo()
+      {  id++;
+         let title = document.getElementById("title").value;
+         let description = document.getElementById("description").value;
+         let originalhtml = document.getElementById("todo").innerHTML;
+         let newhtml = `<div>
+                        <div> ${title} </div>
+                        <div> ${description} </div>
+                        <button id="${id}">to be done</button>
+                        </div>`
+        document.getElementById("todo").innerHTML = originalhtml + newhtml;
+        document.getElementById(`${id}`).setAttribute("onclick",`TodoDone("${id}")`);
+      }
+
+      function TodoDone(id)
+      {
+        document.getElementById(id).innerHTML = "DONE!!"
+      }
+    </script>
+    <div>
+        <input type="text" placeholder="title" id="title"></input> <br></br>
+        <input type="text" placeholder="description" id="description"></input> <br></br>
+        <button onclick="AddTodo()">Add todo</button> <br></br>
+         <div id="todo"></div>
+    </div>
+
+</html>

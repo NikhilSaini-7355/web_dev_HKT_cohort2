@@ -1,0 +1,48 @@
+<!--  todo app making starts  from class 4.2-->
+<!--  todo_app version2 --> 
+
+<!DOCTYPE html>
+<html>
+    <script>
+        let id=0;
+      function AddTodo()
+      { 
+        id++;
+        let title = document.getElementById("title").value;
+        let description = document.getElementById("description").value;
+        let child = createToDo(title,description,id);
+        child.setAttribute("id",`child-${id}`)
+        let parent = document.getElementById("todo")
+        parent.appendChild(child);
+      }
+   
+      function createToDo(title,description,id)
+      {
+        let child = document.createElement("div");
+        let firstgrandchild = document.createElement("div");
+        let secondgrandchild = document.createElement("div");
+        let thirdgrandchild = document.createElement("button");
+        firstgrandchild.innerHTML = title;
+        secondgrandchild.innerHTML = description;
+        thirdgrandchild.innerHTML = "ToBeDone";
+        thirdgrandchild.setAttribute("id",`${TodoState[i].id}`);
+        thirdgrandchild.setAttribute("onclick",`TodoDone("${TodoState[i].id}")`)
+        child.appendChild(firstgrandchild);
+        child.appendChild(secondgrandchild);
+        child.appendChild(thirdgrandchild);
+        return child;
+    }
+      function TodoDone(id)
+      {
+        let element = document.getElementById(id);
+        element.innerHTML = "DONE !!"
+    }
+    </script>
+    <div>
+        <input type="text" placeholder="title" id="title"></input> <br></br>
+        <input type="text" placeholder="description" id="description"></input> <br></br>
+        <button onclick="AddTodo()">Add todo</button> <br></br>
+         <div id="todo"></div>
+    </div>
+
+</html>

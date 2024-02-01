@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <style>
+      
+        .container {  
+           
+            background-color: red;
+            padding: 0cqb;
+        }
+  
+        
+        #sum {  
+           
+            background-color: green;
+        }
+    </style>
+    <body>
+   <!-- for class use. in style --> <!-- for id use # in style          -->
+        <!-- id are unique ,classes are not , id usually used for DOM manipulation using JS , classes usually used for css-->
+        <input type="text" placeholder="first name" class="container" id="firstNumber" oninput="debouncedPopulateDiv()"></input> <br></br>  <!-- styles using classes -->
+        <input type="text" placeholder="second name"  class="container" id="secondNumber" oninput="debouncedPopulateDiv()"></input> <br></br>  <!-- styles using classes -->
+        <button onclick="populateDiv(this)" id="button" style="background-color: darkgoldenrod;">calculate sum</button>  <br></br>  <!-- in-line styles -->
+        <div id="sum" ></div>   <!-- styles  using id-->
+    </body>
+    <script>
+
+        // function populateDiv(id)
+        // {  
+        //    let a = document.getElementById("firstNumber").value;
+        //    let c = document.getElementById("secondNumber").value;
+        //    let b = parseInt(a) + parseInt(c);
+        //    
+            //  let x = document.getElementById("sum");
+            // x.innerHTML = "sum is" + b;
+            // 
+            // document.getElementById("button").innerHTML = "sum is" + b;
+        // }
+
+
+
+        // HKT CORRECT "DEBOUNCING"  LOGIC
+        let timeout;
+        function debouncedPopulateDiv()
+        {
+            clearTimeout(timeout);  // every setTimeout() or setInterval clock gives some id 
+            // clearTimeout clears the clock if the clock is not over yet if we provide the id of the setTimeout() or setInterval clock
+            timeout = setTimeout(()=>{
+                populateDiv();
+            },1000);
+        }
+ 
+
+        function populateDiv()
+        {  
+           let a = document.getElementById("firstNumber").value;
+           let c = document.getElementById("secondNumber").value;
+           let b = parseInt(a) + parseInt(c);
+           
+             let x = document.getElementById("sum");
+            x.innerHTML = "sum is" + b;
+            
+            document.getElementById("button").innerHTML = "sum is" + b;
+        }
+
+
+
+
+    </script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
+    
+        // MY WRONG DEBOUNCING LOGIC
+        
+        setInterval(()=>{
+           
+            let a = document.getElementById("firstNumber").value;
+            let c = document.getElementById("secondNumber").value;
+            let b = parseInt(a) + parseInt(c);
+            console.log(b!= NaN)
+            if(b)
+            {
+                populateDiv(b);
+            }
+        },1000)
+
+        function populateDiv(n)
+{  
+     let x = document.getElementById("sum");
+    x.innerHTML = "sum is" + n;
+    
+    document.getElementById("button").innerHTML = "sum is" + n;
+}
+-->

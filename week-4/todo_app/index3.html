@@ -1,0 +1,68 @@
+<!--  todo app making starts  from class 4.2-->
+<!--  todo_app version3 --> 
+
+<!DOCTYPE html>
+<html>
+    <script>
+        let id=0;
+        let TodoState = [];
+      function AddTodo()
+      { 
+        id++;
+        let title = document.getElementById("title").value;
+        let description = document.getElementById("description").value;
+
+        TodoState.push({
+            title:title,
+            description:description,
+            id: id
+        });
+        createToDo()
+        // let child = createToDo(title,description,id);
+        // child.setAttribute("id",`child-${id}`)
+        // let parent = document.getElementById("todo")
+        // parent.appendChild(child);
+      }
+   
+      function createToDo()
+      {  document.getElementById("todo").innerHTML = "";
+        for(let i=0;i<TodoState.length;i++)
+        {
+            let child = document.createElement("div");
+            let firstgrandchild = document.createElement("div");
+            let secondgrandchild = document.createElement("div");
+            let thirdgrandchild = document.createElement("button");
+            firstgrandchild.innerHTML = TodoState[i].title;
+            secondgrandchild.innerHTML = TodoState[i].description;
+            thirdgrandchild.innerHTML = "ToBeDone"+i;
+            thirdgrandchild.setAttribute("id",`${TodoState[i].id}`);
+            thirdgrandchild.setAttribute("onclick",`TodoDone("${TodoState[i].id}")`)
+        
+            child.appendChild(firstgrandchild);
+            child.appendChild(secondgrandchild);
+            child.appendChild(thirdgrandchild);
+            let parent = document.getElementById("todo")
+            parent.appendChild(child);
+
+        }
+       // return child;
+    }
+
+      function TodoDone(id)
+      { console.log(id);
+        let element = document.getElementById(id);
+        element.innerHTML = "DONE !!"
+      }
+    </script>
+    <div>
+        <input type="text" placeholder="title" id="title"></input> <br></br>
+        <input type="text" placeholder="description" id="description"></input> <br></br>
+        <button onclick="AddTodo()">Add todo</button> <br></br>
+         <div id="todo"></div>
+    </div>
+
+</html>
+
+<!-- 2 more versions left  -->
+<!-- 1. state coming from backend -->
+<!-- 2. calculating the diff then puttting thing on the dom -->
